@@ -16,14 +16,22 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Nome do Cliente</label>
                                 <div class="col-lg-9">
-                                    <select class="form-control" id="name" name="name" type="text" required></select>
+                                    <select class="form-control select2" id="name" name="name" type="text" required>
+										@foreach($customers as $customer)
+											<option value="{{ $customer->id }}">{{ $customer->name }}</option>
+										@endforeach
+									</select>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Produtos</label>
                                 <div class="col-lg-9">
-                                    <select class="form-control" id="name_product" name="name_product" type="float" min="1" required></select>
+                                    <select class="form-control select2" id="products" name="products" type="float" min="1" required multiple="multiple">
+										@foreach($products as $product)
+											<option value="{{ $product->id }}" data-barcode="{{ $product->barcode }}" data-price="{{ $product->price }}">{{ $product->name }}</option>
+										@endforeach
+									</select>
                                 </div>
                             </div>
 
@@ -44,7 +52,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Total</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" id="total" name="total" type="number" required>
+                                    <input class="form-control" id="total" name="total" type="number" disabled>
                                 </div>
                             </div>
                             
@@ -62,5 +70,9 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+	<script src="{{ asset('js/scripts.js') }}"></script>
 @endsection
 

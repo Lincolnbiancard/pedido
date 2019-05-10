@@ -20,7 +20,7 @@ class OrderController extends Controller
     }
     
     public function formorder(){
-        return view('formorder')->with('customer', Customer::all())->with('products', Product::all());
+        return view('formorder')->with('customers', Customer::all())->with('products', Product::all());
     }
 
     public function create()
