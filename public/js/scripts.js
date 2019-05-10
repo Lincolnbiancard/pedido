@@ -8,6 +8,40 @@ $(document).ready(function (){
 	
 });
 
+$('#send').click(function () {
+	let form = $('#orders-form');
+
+	let data = {
+		'products': [],
+		'customer': $('#customers option:selected').val(),
+		'total': $('#total').val()
+	};
+
+	let list = $('#productsTable tr');
+
+	$.each(list, function (index, item) {
+		data.products[item.id] = {
+			'price': $(item).data('price'),
+			'quantity': $('.quantity', item).val()
+		};
+	});
+
+	let url = 'http://pedido/formorder';
+
+	$.ajax({
+		type: 'POST',
+		url: url,
+		headers: {
+			'X-CSRF-Token': $('input[name="csrf-token"]').val()
+		},
+		data: data,
+		function (result) {
+			console.log(result);
+		},
+		dataType: 'JSON'
+	});
+});
+
 function buildTable() {	
 	$('#productsTable').empty();
 	$('#total').val(null)

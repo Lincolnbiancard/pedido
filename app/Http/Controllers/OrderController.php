@@ -30,7 +30,10 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        //
+        Order::create([
+            'id_customer' => $request->customer,
+            'id_product'
+        ]);
     }
 
     public function show($id)

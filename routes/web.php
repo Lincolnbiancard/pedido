@@ -50,6 +50,7 @@ Route::put('customers/{id}', 'CustomerController@update');
 */
 
 Route::get('formorder', 'OrderController@formorder');
+Route::post('formorder', 'OrderController@store');
 
 
 Auth::routes();

@@ -9,13 +9,12 @@
                         <h4 class="mb-0">Cadastro de Pedido</h4>
                     </div>
                     <div class="card-body">
-                        <form class="form" role="form" autocomplete="on" action="store" method="POST">
-                            @csrf
-                            
+                        <form id="orders-form" class="form" role="form" autocomplete="on" method="POST">
+                            <input type="hidden" name="csrf-token" val="{{ csrf_field() }}">
                             <div class="form-group">
                                 <label class="col-lg-3 col-form-label form-control-label">Nome do Cliente</label>
                                 <div class="col-lg-9">
-                                    <select class="form-control select2" id="name" name="name" type="text" required>
+                                    <select class="form-control select2" id="customers" name="customers" type="text" required>
 										@foreach($customers as $customer)
 											<option value="{{ $customer->id }}">{{ $customer->name }}</option>
 										@endforeach
@@ -65,7 +64,7 @@
                             <div class="form-group">
                                 <label class="col-lg-3 col-form-label form-control-label"></label>
                                 <div class="col-lg-9">
-                                    <input type="submit" class="btn btn-primary" value="Cadastrar">
+                                    <input type="button" id="send" class="btn btn-primary" value="Cadastrar">
                                     <input type="reset" class="btn btn-secondary" value="Limpar">
                                 </div>
                             </div>
